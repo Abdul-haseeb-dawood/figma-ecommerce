@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 
 const GlowButton = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isActive, setIsActive] = useState(false);
+  const [, setIsHovered] = useState(false);
+  const [ ,setIsActive] = useState(false);
 
   const handleMouseEnter = () => {
     setIsHovered(true);

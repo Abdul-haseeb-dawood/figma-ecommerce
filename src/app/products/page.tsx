@@ -108,7 +108,7 @@ const ProductCards: React.FC = () => {
   return (
     <div className="p-4">
       <h2 className="text-center text-black mt-4 mb-4 text-2xl font-bold">
-        Products From API's Data
+        Products From APIs Data
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
@@ -211,7 +211,7 @@ const ProductCards: React.FC = () => {
           </ul>
            <div className="mt-6 pt-4 border-t border-slate-300">
            <div className="flex justify-between items-center">
-             <span className="font-bold text-lg font-serif text-gray-900">Total:</span>
+             <span className="font-bold text-lg font-serif text-gray-900">Total</span>
              <span className="font-bold text-xl font-serif text-blue-600">
                ${cart.reduce((sum, item) => sum + item.price, 0).toFixed(2)}
              </span>
@@ -261,7 +261,7 @@ const ProductCards: React.FC = () => {
           </ul>
           <div className="mt-6 pt-4 border-t border-slate-300">
            <div className="flex justify-between items-center">
-             <span className="font-bold text-lg font-serif text-gray-900">Total:</span>
+             <span className="font-bold text-lg font-serif text-gray-900">Total</span>
              <span className="font-bold text-xl font-serif text-blue-600">
                ${wishlist.reduce((sum, item) => sum + item.price, 0).toFixed(2)}
              </span>

@@ -8,7 +8,6 @@ import { IoCartOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import Link from "next/link";
 import Login from "./Login";
 
 export default function HeroSection() {

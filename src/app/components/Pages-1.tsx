@@ -2,6 +2,7 @@ import Image from "next/image";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FaFacebook, FaTwitter, FaInstagram,FaLinkedin, FaFacebookSquare} from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
+import Login from "./Login";
 
 
 export default function Pages1() {
@@ -106,7 +107,7 @@ export default function Pages1() {
             </li>
           </ul>
           <div className="sm:flex md:flex md:-ml-48 lg:flex sm:gap-28 xs:flex-none xs:ml-24 ">
-         <p className="lg:mt-2 lg:mr-12 text-blue-500 sm:ml-20 sm:mt-2 xs:ml-20 xs:my-3 font-bold">Login</p>
+         <div className="my-auto"><Login/></div>
           <button className="md:text-sm xs:w-52 xs:px-5 xs:py-2.5 md:py-2.5 sm:px-5 sm:py-2.5 sm:mb-3 md:tracking-tighter md:w-36 md:-ml-24 lg:w-44 lg:px-6 lg:py-3 bg-blue-500 text-white lg:text-sm rounded-md">Become a member  </button>
           </div>
         </nav>
@@ -190,7 +191,7 @@ export default function Pages1() {
 
      {/* Team Members Grid */}
      <h1 className="text-3xl text-center font-semibold text-gray-800 mt-10">Meet Our Team</h1>
-     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-24">
+     <div className="grid grid-cols-1 md:grid-cols-2 lgish :grid-cols-3 gap-8 mt-24">
         {teamMembers.map((member, index) => (
           <div key={index} className="flex flex-col items-center w-[23rem] mx-auto h-[25rem]">
             {/* Image Container */}

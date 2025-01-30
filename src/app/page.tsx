@@ -9,6 +9,7 @@ import Hero3 from "./components/Hero3";
 export default function Home() {
   return (
    <div>
+    
     <HeroSection/>
     <EditorPic/>
     <BestsellerProducts/>

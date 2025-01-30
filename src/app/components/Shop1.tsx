@@ -12,6 +12,7 @@ import { CiHeart } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import Shop5 from "./shop-5";
+import Login from "./Login";
 
 const categories = [
   { name: "CLOTHES", items: 5, image: "/picture/card1.png" },
@@ -212,9 +213,7 @@ export default function Shop1() {
               <GoPerson className="xs:ml-10 xs:mb-2"/>
             </span>
 
-            <a href="#" className="text-blue-600 pr-5  xs:mb-2">
-              Login / Register
-            </a>
+            <Login/>
             <div className="flex text-xl space-x-4 pr-5 font-semibold text-blue-600">
               <IoIosSearch />
               <IoCartOutline />

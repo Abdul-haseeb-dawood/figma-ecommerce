@@ -4,6 +4,7 @@ import { IoCartOutline } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { GoPerson } from "react-icons/go";
 import { MdKeyboardArrowDown } from "react-icons/md";
+import Login from "./Login";
 
 
 
@@ -48,9 +49,7 @@ export default function About() {
               <GoPerson className="xs:ml-10 xs:mb-2"/>
             </span>
 
-            <a href="#" className="text-blue-600 xs:pr-5   xs:mb-2">
-              Login / Register
-            </a>
+             <Login/> 
             <div className="flex text-xl space-x-4 pr-5 font-semibold text-blue-600">
               <IoIosSearch />
               <IoCartOutline />

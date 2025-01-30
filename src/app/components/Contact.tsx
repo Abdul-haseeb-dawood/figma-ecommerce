@@ -7,6 +7,7 @@ import { FaFacebookSquare, FaTwitter, FaInstagram, FaLinkedin } from "react-icon
 import { TiSocialYoutube, TiMail } from "react-icons/ti";
 import { FaFacebook } from "react-icons/fa";
 import { FiPhone } from "react-icons/fi";
+import Login from "./Login";
 
 
 
@@ -86,7 +87,7 @@ export default function ContactUs() {
             </li>
           </ul>
           <div className="sm:flex md:flex md:-ml-48 lg:flex sm:gap-28 xs:flex-none xs:ml-24 ">
-         <p className="lg:mt-2 lg:mr-12 text-blue-500 sm:ml-20 sm:mt-2 xs:ml-20 xs:my-3 font-bold">Login</p>
+           <div className="my-auto"><Login/></div>
           <button className="md:text-sm xs:w-52 xs:px-5 xs:py-2.5 md:py-2.5 sm:px-5 sm:py-2.5 sm:mb-3 md:tracking-tighter md:w-36 md:-ml-24 lg:w-44 lg:px-6 lg:py-3 bg-blue-500 text-white lg:text-sm rounded-md">Become a member  </button>
           </div>
         </nav>

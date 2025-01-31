@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import GlowButton from "../components/Button"
-import Image from "next/image"
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -103,7 +102,7 @@ export default function LoginPage() {
         </h3>
       </div>
      
-      <div
+      {/* <div
         id="third-party-auth"
         className="flex items-center justify-center mt-5 flex-wrap"
       >
@@ -180,7 +179,7 @@ export default function LoginPage() {
             height={300}
           />
         </button>
-      </div>
+      </div> */}
 
       <div
         className="text-gray-500 flex text-center flex-col mt-4 items-center text-sm"

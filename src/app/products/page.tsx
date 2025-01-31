@@ -30,6 +30,8 @@ const ProductCards: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [cart, setCart] = useState<Product[]>([]);
   const [wishlist, setWishlist] = useState<Product[]>([]); // Wishlist state
+  const [error, setError] = useState<boolean>(false); // Error state
+
 
   // Fetch products from Sanity
   const fetchProducts = async () => {
@@ -46,9 +48,16 @@ const ProductCards: React.FC = () => {
       }`;
 
       const data = await sanity.fetch(query);
-      setProducts(data);
+
+      if (data || data.length === 0) {
+        throw new Error("No products found.");
+      }
+
+     
+      setError(false);
     } catch (error) {
       console.error("Error Fetching Products:", error);
+      setError(true)
     }
   };
 
@@ -107,70 +116,65 @@ const ProductCards: React.FC = () => {
 
   return (
     <div className="p-4">
+        <div className="p-4">
       <h2 className="text-center text-black mt-4 mb-4 text-2xl font-bold">
         Products From APIs Data
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <div
-            key={product._id}
-            className="bg-gray-50 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300"
-          >
-            <Image
-              src={product.imageUrl}
-              alt={product.title}
-              width={300}
-              height={300}
-              className="w-full h-48 object-cover rounded-md"
-            />
-            <div className="mt-4">
-              <h2 className="text-xl font-serif italic text-purple-950 font-bold">
-                {product.title}
-              </h2>
-              <p className="text-black font-serif mt-2 text-sm">
-                {truncateDescription(product.description)}
-              </p>
-              <div className="flex justify-between items-center mt-4">
-                <div>
-                  <p className="text-black font-bold">${product.price}</p>
-                  {product.discountPercentage > 0 && (
-                    <p className="text-sm text-green-700">
-                      {product.discountPercentage}% OFF
-                    </p>
-                  )}
+
+      {error ? (
+         <Image 
+           src="/picture/hj.jpg" 
+           alt="Error loading products" 
+           width={400} 
+           height={300} 
+           className="mx-auto"
+         />
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map((product) => (
+            <div key={product._id} className="bg-gray-50 shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300">
+              <Image src={product.imageUrl} alt={product.title} width={300} height={300} className="w-full h-48 object-cover rounded-md" />
+              <div className="mt-4">
+                <h2 className="text-xl font-serif italic text-purple-950 font-bold">{product.title}</h2>
+                <p className="text-black font-serif mt-2 text-sm">
+                  {product.description.length > 100 ? product.description.substring(0, 100) + "..." : product.description}
+                </p>
+                <div className="flex justify-between items-center mt-4">
+                  <div>
+                    <p className="text-black font-bold">${product.price}</p>
+                    {product.discountPercentage > 0 && (
+                      <p className="text-sm text-green-700">{product.discountPercentage}% OFF</p>
+                    )}
+                  </div>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {product.tags.map((tag, index) => (
+                    <span key={index} className="text-xs font-serif text-black rounded-lg bg-white px-2 py-1">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <button className="relative inline-block w-48 py-2 font-medium group" onClick={() => setCart([...cart, product])}>
+                    <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-purple-800 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                    <span className="absolute inset-0 w-full h-full bg-white border-2 border-purple-800 group-hover:bg-purple-800"></span>
+                    <span className="relative text-purple-800 group-hover:text-white">Add To Cart</span>
+                  </button>
+                  <button className="relative inline-block w-48 py-2 font-medium group" onClick={() => setWishlist([...wishlist, product])}>
+                    <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-red-600 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                    <span className="absolute inset-0 w-full h-full bg-white border-2 border-red-600 group-hover:bg-red-800"></span>
+                    <span className="relative text-red-600 group-hover:text-white">Wish List</span>
+                  </button>
                 </div>
               </div>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {product.tags.map((tag, index) => (
-                  <span
-                    key={index}
-                    className="text-xs font-serif text-black rounded-lg bg-white px-2 py-1"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              {/* Add to cart and wishlist buttons */}
-              <div className="mt-4 flex gap-2">
-
-              <button className="relative inline-block w-48 py-2 font-medium group"
-                 onClick={() => addToCart(product)}>
-                 <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-purple-800 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                 <span className="absolute inset-0 w-full h-full bg-white border-2 border-purple-800 group-hover:bg-purple-800"></span>
-                 <span className="relative text-purple-800 group-hover:text-white">Add To Cart</span>
-              </button>
-              <button className="relative inline-block w-48 py-2 font-medium group"
-                 onClick={() => addToWishlist(product)}>
-                 <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-red-600 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
-                 <span className="absolute inset-0 w-full h-full bg-white border-2 border-red-600 group-hover:bg-red-800"></span>
-                 <span className="relative text-red-600 group-hover:text-white">Wish List</span>
-              </button>
-                
-              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
+    </div>
+
+
+
       <div className="grid grid-cols-4 gap-6">
 
       <h1 className=" grid col-span-2 mx-auto my-11 text-4xl font-serif font-extrabold italic text-red-800 ">ADD TO CART SUMMARY</h1>

@@ -53,7 +53,7 @@ const ProductCards: React.FC = () => {
         throw new Error("No products found.");
       }
 
-     
+     setProducts(data)
       setError(false);
     } catch (error) {
       console.error("Error Fetching Products:", error);
@@ -137,8 +137,8 @@ const ProductCards: React.FC = () => {
               <div className="mt-4">
                 <h2 className="text-xl font-serif italic text-purple-950 font-bold">{product.title}</h2>
                 <p className="text-black font-serif mt-2 text-sm">
-                  {product.description.length > 100 ? product.description.substring(0, 100) + "..." : product.description}
-                </p>
+                {truncateDescription(product.description)}
+              </p>
                 <div className="flex justify-between items-center mt-4">
                   <div>
                     <p className="text-black font-bold">${product.price}</p>
@@ -155,12 +155,12 @@ const ProductCards: React.FC = () => {
                   ))}
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <button className="relative inline-block w-48 py-2 font-medium group" onClick={() => setCart([...cart, product])}>
+                  <button className="relative inline-block w-48 py-2 font-medium group" onClick={() => addToCart(product)}>
                     <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-purple-800 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                     <span className="absolute inset-0 w-full h-full bg-white border-2 border-purple-800 group-hover:bg-purple-800"></span>
                     <span className="relative text-purple-800 group-hover:text-white">Add To Cart</span>
                   </button>
-                  <button className="relative inline-block w-48 py-2 font-medium group" onClick={() => setWishlist([...wishlist, product])}>
+                  <button className="relative inline-block w-48 py-2 font-medium group" onClick={() => addToWishlist(product)}>
                     <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-red-600 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                     <span className="absolute inset-0 w-full h-full bg-white border-2 border-red-600 group-hover:bg-red-800"></span>
                     <span className="relative text-red-600 group-hover:text-white">Wish List</span>
